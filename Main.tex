@@ -52,7 +52,7 @@
 %  mres
 %  mphil
 %\documentclass[12pt,phd,draft,a4paper,oneside]{ucl_thesis}
-\documentclass[12pt,phd,a4paper,oneside]{ucl_thesis}
+\documentclass[12pt,mphil,a4paper,oneside]{ucl_thesis}
 
 
 % Package configuration:
@@ -96,16 +96,21 @@
 %  *must not* include spaces.
 \include{Preamble}
 \include{Introduction}
-\include{Chapter2}
-\include{Chapter3}
-\include{Conclusions}
-\include{Appendices} 
+\include{Background}
+\include{Lit_review}
+\include{AimsObj}
+\include{Methodology}
+\include{Results}
+\include{Discussion}
+\include{Conclusion}
+\include{FutureWorks}
+\include{Appendices}
 % You could separate these out into different files if you have
 %  particularly large appendices.
 
 % Actually generates your bibliography. The fact that \include is 
 % the last thing before this ensures that it is on a clear page.
-\bibliography{example}
+\bibliography{references}
 
 % All done. \o/
 \end{document}
