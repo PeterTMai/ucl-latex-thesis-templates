@@ -15,7 +15,7 @@ The whole system is initially described as a lumped model or also called the 0D 
   \label{fig:0d}
 \end{figure}
 
-The aorta was divided in sections and which were represented with an elementary building block consisting of an inertance (L) and a resistance (R). The whole system can be seen on the Figure \ref{fig:0d}. The parameters of each section has been obtained from an steady state simulation CFD simulation, where the inlet was the average flow rate at the inlet measured from the 4D-MRI. The parameter were then calculated as:
+The aorta was divided in sections which were represented with an elementary building block consisting of an inertance (L) and a resistance (R). The whole system can be seen on the Figure \ref{fig:0d}. The parameters of each section has been obtained from an steady state simulation CFD simulation, where the inlet was the average flow rate at the inlet measured from the 4D-MRI. The parameter were then calculated as:
 \begin{align}
     L = \frac{\rho L}{A_{avg}}
 \end{align}
@@ -51,7 +51,7 @@ Obtaining the parameters for the whole system, the compliance is distributed pro
 \section{Boundary conditions}
 The blood is modelled as incompressible with a density 1060 $kg m^{-3}$ and the flow was considered as laminar, which is a common assumption in large arteries \cite{Alimohammadi2014DevelopmentConditions,Bonfanti2017ComputationalData}. The inlet condition was obtained from 4D-MRI and a flow rate was applied.\par
 
-The three-element Windkessel parameters obtained from the 0D model has been coupled to the outlet, thus the mean pressure (P) and the flow (Q) at the outlet are related by:
+The three-element Windkessel parameters obtained from the 0D model has been coupled to the outlet, therefore the mean pressure (P) and the flow (Q) at the outlet are related by:
 \begin{align}
     P=(R_1+R_2)Q-R_2C\frac{dP}{dt}+R_1R_2C\frac{dQ}{dt}
 \end{align}
@@ -65,22 +65,27 @@ Different modelling assumptions can be used while modelling a patient aorta. The
 \subsection{Segmentation}
 While the patient geometries are obtained from the images, the segmentation criterion can affect the resulting in a varying geometry. While all geometry can be considered valid, this can results in differences in the lumen's area. \par
 
-For the simulations, a two additional geometries will be used, where the patient's aorta is larger and narrower by 0.6 mm which accounts for the variability of the segmentation done (the original patient aorta was segmented from CT scans with 1 mm voxel). \par
+For the simulations, a two additional geometries will be used, where the patient's aorta is expanded and narrowered by 0.6 mm which accounts for the variability of the segmentation done. The amount of variation was based on the voxel size (1 mm) from which the aorta has been segmented. The \par
 
 \subsection{Image processing}
 Depending on the image processing done on the patient scans the resulting geometry can have variation as well. These depend on the choices doing while improving the quality of the scans. \par
 
-In the simulations two different aortas are being used, where one surface is smooth and the other is unsmoothened.
+In the simulations two different aortas are being used, where one surface is smooth and the other is unsmoothened as seen on the Figure \ref{fig:geometry}.
+
+\begin{figure}[ht!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{Figures/Geometry.png}
+    \caption{Unsmoothened geometry (left) and smoothened geometry (right used in the study which can be a result of decisions made during image processing}
+    \label{fig:geometry}
+\end{figure}
 
 \subsection{Mesh}
-While a finer mesh can yield much more accurate results, it comes with a trade-off of computational run time. In CFD simulatons it is a good practice to run mesh sensitivity studies before running the full simulation, however a proper guideline has not been introduced, therefore the decision on the mesh is often left to the modeler.\par
+While a finer mesh can yield much more accurate results, it comes with a trade-off of computational run time. In CFD simulatons it is a good practice to run mesh sensitivity studies before running the full simulation, however a proper guideline has not been set, therefore the decision on the mesh is often left to the modeler.\par
 
-In this project a several meshes have been used to  assess how much the mesh can influence the final results. Four different meshes have been used with ~120,000 ~250,000, ~600,000, and ~1,100.000 elements.\par
+In this project a several meshes have been used to  assess how much the mesh can influence the final results. Four different meshes have been used with ~120,000 ~250,000, ~600,000, and ~1,100.000 elements (through this report, the different mesh models will be referred to as Mesh 1-4 models, where Mesh 1 is the coarsest mesh and Mesh 4 is the finest).\par
 
 \subsection{Viscosity}
-As seen in the Chapter \ref{chapterlabel2}, while blood has shearing properties it is often assumed as Newtonian in larger arteries. Another approximation often used in simulations is using the Carreau-Yasuda model. \par
+As seen in the Chapter \ref{chapterlabel2}, while blood has shearing properties it is often assumed as Newtonian in larger arteries. Another commonly used approximation often used in simulations is the Carreau-Yasuda model. \par
 
 These two blood models will be considered, a Newtonian blood will be modelled with a constant viscosity of 0.004 $Pa s$ and the non-Newtonian blood will be modelled as Carreau-Yasuda model with the parameters taken from the Gijsen et al \cite{Gijsen1999TheModel}.
 
-
-\section{Validation}

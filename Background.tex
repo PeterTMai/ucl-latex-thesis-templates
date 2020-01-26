@@ -1,5 +1,5 @@
 \chapter{Background}
-\label{chapterlabel2}
+\label{chapterlabel3}
 In this chapter the basic background of the cardiovascular system and computational fluid dynamics will be introduced. Additionally, the process of verification, validation and uncertainty quantification will be explained.
 
 
@@ -24,12 +24,14 @@ The system is divided into two circulatory loops with heart at the center, a pul
 
 The blood vessels of the system are responsible to deliver the blood into organs and tissue. The blood is driven into the aorta from there it flows into the major arteries, which then deliver blood to the major regions and organs. The arteries can further branch out and then they converge into veins which transport the blood back into the heart \cite{Levick2010Introduction5ed}.\par
 
-\subsection{Cardiovascular diseases}
+\section{Computational Fluid Modelling for cardiovascular applications}
+In the cardiovascular research, computational models have been often use to study the haemodynamics of the system. These were often used for hypothesis creation, mechanistic understanding, device evaluation or educational purposes. With better imaging modality and improved devices to obtain patient measurements, the concept of patient-specific models have been emerge and their capability of being used in diagnosis or predictive medicine was considered. Where the models are made tailored to the patient anatomy.\par
 
+The cardiovascular models can be categorized by their dimension. Zero-dimensional (0D), or lumped parameter, models divide the system into individual components. The governing equations are ordinary differential equations. It can be made analogous to an electrical circuit where the physiological processes pressure, flow and volume are equivalent to to voltage, charge and current. 0D models assumes the velocity and pressure are uniformly distributed and are used to study the pressure waveforms, however they have limited accuracy to estimate the central aortic pressure \cite{Alimohammadi2015AorticUnderstanding}. However these model can be extended to include additional biochemical and biomechanical processes \cite{Hose2019CardiovascularNext}. \par
 
+One dimensional models (1D) care used to describe vascular components in which distribution of quantities along the vessel axis have to be taken into consideration and are essential when wave effects are important. These models are represented using partial differential equations in time and one spatial dimension. These models are used to simulate pressure and flow waveforms at any point of the arterial network according to their distributed properties and recently, they have been also used to reconstruct central aortic pressure \cite{Zhou2019APressure, Hose2019CardiovascularNext}. \par 
 
-\section{Computational Fluid Dynamics Modelling for cardiovascular applications}
-Computational fluid d
+Most common patient-specific em
 
 \subsection{Governing equations}
 Blood is usually described as a continuous and incompressible viscous-fluid. The governing equations of the flow are the Navier-Stokes equations (\ref{eq:n_s}) which describe the conservation of momentum of a fluid. Thus, the flow can be calculated in conjunction with the conservation of mass equation (\ref{eq:con} ):
