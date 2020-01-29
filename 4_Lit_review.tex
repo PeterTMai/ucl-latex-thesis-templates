@@ -1,0 +1,78 @@
+\chapter{Literature review}
+\label{chapterlabel4}
+
+\section{Uncertainty}
+In order to understand the effects of uncertainty on model prediction, it is important to know the different types of uncertainty and their source. In this section different types of uncertainties and their sources have been explored.
+
+\subsection{Sources of uncertainty}
+There are numerous sources that can produce variability and errors. The different types of sources are explained below:
+\begin{description}
+\item[Residual variability] Variation due to the process being inherently unpredictable and stochastic. The latter can also be related to model inadequacy (structural uncertainty) due to the lack of details and understanding which eventually results in different predicted values. Usually to account for this variability, an average value is taken over these unrecognized condition to define the true values.
+
+\item[Observational uncertainty] The two sources for this uncertainty stems from either limited or incomplete knowledge and measurement errors. The lack of knowledge can be a result of surrogates of the experiments or due to partial measurements. The measurements error is often attributed to the limited accuracy and resolutions of the sensors.
+
+\item[Parameter uncertainty] The parameters of the model have to be specified in order to predict the behaviour of the system. The choice of the parameters influences the predicted results as they can misrepresent the underlying physics.
+
+\item[Condition uncertainty] In differential models, it is important to have initial and boundary conditions before the models are evaluated. These can be obtained from observations or experiments, thus, introducing uncertainties into the models.
+
+\item[Structural (model) uncertainty] Also sometimes called model inadequacy. Models are a simplification of real-world systems, therefore they are based on a certain number of more or less realistic hypothesis. In addition, some significant phenomena might have been neglected. The predicted values will not be equal to the true value of the system and the discrepancy between the two values is the structural uncertainty. 
+
+\item[Simulator uncertainty] Computational results from a model is accompanied numerical errors associated with grid resolution, time steps,tolerances, convergence and any emulator approximations.
+\end{description}
+
+\subsection{Types of uncertainty}
+In addition to identifying the type of sources, it is important to classify uncertainties to evaluate if if they can be prevented or reduced. The two types of uncertainties are:
+
+\begin{description}
+\item[Aleatory uncertainty:] Also called statistical, stochastic or irreducible uncertainty, is the uncertainty due to the inherent variation and randomness that can occur in natural processes due to spatial and temporal variations. These are typically unbiased and naturally defined using a probabilistic framework.
+\item[Epistemic uncertainty:] Uncertainty that arises due to simplification, assumptions or the lack of knowledge. Sometimes called reducible or ignorance uncertainty. The uncertainies are often biased and not often defined with a probabilistic network. However with additional knowledge, this uncertainty can be, in principle, eliminated.
+\end{description}
+
+\section{Uncertainty quantification methods}
+There are several methods to assess the different types of uncertainties and quantify them in a probabilistic framework. In this section the different method of uncertainty quantification will be briefly explained.
+
+\subsection{Input uncertainty}
+Input uncertainty arises from uncertain inputs that are used for the model. These inputs are either the observational data used in the model or parameter inputs that are determined to fit the model to the data. The uncertain input can be usually defined using a probability density function from the available information.\par
+\begin{description}
+\item[Monte-Carlo:]
+The Monte-Carlo (MC) algorithm is often used for uncertainty studies due to its simplicity and wide-ranging applicability. The algorithm consists from three basic steps:
+\begin{enumerate}
+    \item A number of samples are drawn from a probability density function.
+    \item For each of the drawn samples, the model is evaluated.
+    \item From the results calculated, the input uncertainty is determined.
+\end{enumerate}
+In order for the model to converge, a minimum number of samples has to be drawn, which is however independent of the number of inputs. However it is important to note that the number of evaluations can be very high making it computationally expensive \cite{Eck2016AApplications,Sudret2007UncertaintyMethods}. 
+
+\item[Polynomial Chaos:]
+Another method to evaluate the uncertainty is using the polynomial chaos (PC) method. It is a non-sampling based method to evaluate the uncertainty in a dynamic system. The polynomial expansion builds a mathematical model of the stochastic variations of the model of interest based on the knowledge of the random parameters considered, which is able to accurately and efficiently describe the variation in the model \cite{Sudret2007UncertaintyMethods}.
+\end{description}
+\subsection{Model uncertainty}
+There are several methods that have been used in the field of computational modelling.
+
+\begin{description}
+\item[Model Averaging:]
+The predictions or probability statements of a number of plausible models are averaged, with weights based either on some measure of model adequacy or some measure of the probability that the model is true. \par
+
+A number of plausile models of the system are evaluated using a model selection process, which can be either through Akaike's Information Criterion or Bayes' Information Criterion process. A weight is assigned based on the model selection process and the model results are averaged. \par
+
+\item[Calibration-based methods:] 
+The focus of this method is on the model discrepancy $\mathbf{\delta} = \textbf{Z} - f(\textbf{X})$ , the discrepancy between the output of a model evaluated at the the true inputs and the true target value. The beliefs about $\mathbf{\delta}$ are updated based on the observations \textbf{Z} and the model is calibrated to minimize the discrepancy. \par
+
+\item[Internal discrepancy:]
+The model is divided into submodels, where the each submodels are evaluated individually using a method to determine the input uncertainty using one of the methods explained above. \par
+
+The variation of each of submodel is then accounted in the whole model as an additional parameter and the sensitivity of each parameter will be evaluated using the methods used to determine the input uncertainty. The parameter term that has the greatest impact on the model would be the most likely to be the most "uncertain". \par
+
+\end{description}
+
+
+\section{VVUQ in cardiovascular modelling}
+In cardiovascular modelling, the process of verification and validation is often interchangable. The validation process is comparing a single metric such as the outlet pressure or flow with the simulation, however this omits the different metric of interest that would have error associated to them as well. \par
+
+While there are strict guidelines for the VVUQ of computational models and methods for UQ, they can be mathematically challenging and are often omitted from the analysis. Furthermore, in order to do an accurate analysis of the uncertainty,a large number of $in$ $vivo$ measurements is necessary to quantify uncertainty in a probabilistic manner. The lack of patient data and numerous assumptions considered during the modelling pipeline also has put into question how patient-specific the cardiovascular model are and whether the  cardiovascular models are really looking into the relevant information for the clinicians \cite{Huberts2018WhatPaper, Robertson2012ComputationalCritical, Xiang2014CFD:Assessment}. \par
+
+This has however motivated a part of the cardiovascular modelling community to start thinking in terms of the variability and uncertainty due to the modelling assumptions, incomplete clinical data and variability in the modelling pipelines. A number of recent review papers acknowledge the need of a robust uncertainty quantification in order to make cardiovascular models viable in the clinic \cite{Huberts2018WhatPaper,Hose2019CardiovascularNext, Steinman2018Editorial:Utility, Steinman2019HowVariability}. Eck et al. \cite{Eck2016AApplications} have published a guideline paper on uncertainty quantification methods, and their use on cardiovascular models. These methods have been applied on a number of mathematical models \cite{Eck2017EffectsPredictions,Schiavazzi2017AModeling,Quarteroni2017TheApplications}.\par
+
+In CFD models, only a fully comprehensive study on uncertainty has yet to be done. While the Monte-Carlo method and the Polynomial Chaos Expansion method are the standards for uncertainty quantification, their use on CFD model is very limited due to long run times and complexity, due to the number of inputs. Some error quantification is usually done,, however, this usually explores one certain aspect of whole model and do not take into account other assumptions \cite{Polzer2015BiomechanicalIndex,Paliwal2017MethodologyAneurysm}. \par 
+
+In the review of Steinman et al. \cite{Steinman2019HowVariability} different sources of uncertainty in the CFD modelling of cerebral aneurysms are discussed. The review identifies different sources of error from assumption commonly used by the cardiovascular modelling community and ranks the most likely sources of variability and uncertainty. In this project, a comprehensive framework has been introduced to assess the different uncertainties that were discussed in the review.
